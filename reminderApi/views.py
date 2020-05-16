@@ -1,11 +1,8 @@
 from django.http import JsonResponse
+from .models import ReminderTag
 
 
 def getTags(request):
-    # TODO: 回傳實際資料
-    aTag = {'id': 1, 'name': 'a'}
-    bTag = {'id': 2, 'name': 'b'}
+    content = ReminderTag.getAll()
 
-    response = [aTag, bTag]
-
-    return JsonResponse(response, safe=False)
+    return JsonResponse(content, safe=False, charset='utf-8')
