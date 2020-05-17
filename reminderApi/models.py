@@ -14,3 +14,10 @@ class ReminderTag(models.Model):
             tag = {'id': querySet.id, 'name': querySet.name}
             tags.append(tag)
         return tags
+
+    @staticmethod
+    def add(name):
+        unit = ReminderTag.objects.create(name=name)
+        unit.save()
+        return
+
