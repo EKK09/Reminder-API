@@ -2,7 +2,10 @@ from django.http import JsonResponse
 from .models import ReminderTag
 
 
-def getTags(request):
-    content = ReminderTag.getAll()
+def tags(request):
+    method = request.method
 
-    return JsonResponse(content, safe=False, charset='utf-8')
+    if method == 'GET':
+        content = ReminderTag.getAll()
+
+        return JsonResponse(content, safe=False, charset='utf-8')
