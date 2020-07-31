@@ -1,5 +1,5 @@
 from django.http import JsonResponse, HttpResponse
-from .models import ReminderTag
+from .models.ReminderTagModel import ReminderTag
 from django.views.decorators.csrf import csrf_exempt
 import json
 
