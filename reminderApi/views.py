@@ -20,3 +20,9 @@ def tags(request):
 
         return HttpResponse(status=204)
 
+    elif method == 'DELETE':
+    	bodyUnicode = request.body.decode('utf-8')
+    	bodyJson = json.loads(bodyUnicode)
+    	ReminderTag.deleteTag(bodyJson['id'])
+
+    	return HttpResponse(status=204)

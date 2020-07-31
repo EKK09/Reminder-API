@@ -21,3 +21,9 @@ class ReminderTag(models.Model):
         unit.save()
         return
 
+    @staticmethod
+    def deleteTag(id):
+        unit = ReminderTag.objects.get(id = id)
+        unit.delete()
+        return
+
