@@ -1,8 +1,12 @@
-from django.urls import path
-from . import views
+from django.urls import include, path
+from rest_framework import routers
+from .views import ReminderTagView, ReminderCategoryView, ReminderView
+
+router = routers.DefaultRouter()
+router.register(r'tags', ReminderTagView)
+router.register(r'categorys', ReminderCategoryView)
+router.register(r'reminders', ReminderView)
 
 urlpatterns = [
-    path('reminders', views.reminders),
-    path('tags', views.tags),
-    path('categorys', views.categorys),
+    path('', include(router.urls)),
 ]
