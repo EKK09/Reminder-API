@@ -4,22 +4,28 @@ from reminderApi.models.ReminderCategoryModel import ReminderCategory
 from reminderApi.models.ReminderModel import Reminder
 
 
-class ReminderTagSerializer(serializers.HyperlinkedModelSerializer):
+class ReminderTagSerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = ReminderTag
         fields = ['id', 'name']
 
 
-class ReminderCategorySerializer(serializers.HyperlinkedModelSerializer):
+class ReminderCategorySerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = ReminderCategory
         fields = ['id', 'name']
 
 
-class ReminderSerializer(serializers.HyperlinkedModelSerializer):
+class ReminderSerializer(serializers.ModelSerializer):
 
-    class Meta(object):
+    class Meta:
         model = Reminder
-        fields = ['id', 'title', 'remind_time', 'finished']
+        fields = ['id', 'title', 'remind_time',
+                  'finished', 'category']
+
+    def to_representation(self, instance):
+        self.fields['category'] = ReminderCategorySerializer(
+            read_only=True)
+        return super(ReminderSerializer, self).to_representation(instance)
