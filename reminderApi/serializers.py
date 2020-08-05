@@ -23,9 +23,11 @@ class ReminderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reminder
         fields = ['id', 'title', 'remind_time',
-                  'finished', 'category']
+                  'finished', 'category', 'tags']
 
     def to_representation(self, instance):
         self.fields['category'] = ReminderCategorySerializer(
             read_only=True)
+        self.fields['tags'] = ReminderTagSerializer(
+            read_only=True, many=True)
         return super(ReminderSerializer, self).to_representation(instance)
