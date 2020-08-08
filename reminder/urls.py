@@ -23,7 +23,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Reminder API",
         default_version='v1',
-        description="Test description",
+        description="It is a django project!",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
